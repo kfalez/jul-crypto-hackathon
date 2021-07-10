@@ -58,13 +58,14 @@ public class BtcGui extends JFrame implements ActionListener {
 			double amount= Double.parseDouble(inField.getText());
 			// TODO: ADD THE GRADE TO stats
 			
-			 double addAmount = btc.setAmount(amount);
+			
 			 display.append("\n\nCurrent rate: "+ Btc.sumRates + " BTC/hr, utilizing all available miners.");
-			 display.append(addAmount + "\n");
+			 Btc.setAmount(amount);
 			 
 		}
 
 		if (e.getSource() == displayTime) {
+			Btc.getTime();
 			display.append(btc.toString());
 		
 		}
@@ -72,14 +73,14 @@ public class BtcGui extends JFrame implements ActionListener {
 		if (e.getSource() == reset) {
 			display.setText(btc.testToString());
 			btc = new Btc();
+			
 		}
 	}
 
 
 	public static void main(String[] args) {
 		new BtcGui("Mean and median");
-		Btc.getTime();
-		
+		Btc.getRate();		
 	}
 
 }
