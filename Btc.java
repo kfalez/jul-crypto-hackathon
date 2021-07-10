@@ -3,15 +3,43 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Name: Btc.java
+ * 
+ *  Provides the necessary code to perform the calculations used to evaluate the efficiency and cost/profit 
+ *  for Bitcoin mining.
+ * 
+ * @author Kody Yingcheng Kou, Tahsin, Brandon Attai, Kelten Falez
+ * 
+ * @since June 7, 2021
+ *
+ */
 public class Btc {
 
+	/**
+	 * a String used to keep track of the current BTC price.
+	 */
 	private String currentPrice;
+	/**
+	 *  A double used to keep track of the number of bitcoins the user wishes to mine.
+	 */
 	private static double bitcoins;
-	private double timeToMine;
-	private double rate;
+
+	/**
+	 * 
+	 */
 	public static double sumRates = 0;
+	/**
+	 * 
+	 */
 	public static ArrayList<String> miners = new ArrayList<String>();
+	/**
+	 * 
+	 */
 	public static ArrayList<Integer> wattage = new ArrayList<Integer>();
+	/**
+	 * 
+	 */
 	public static ArrayList<Double> rates = new ArrayList<Double>();
 
 	public static double time;
@@ -24,7 +52,6 @@ public class Btc {
 	public static void setAmount(double amount) {
 		bitcoins = amount;
 	}
-	
 	
 	public final static void getRate() {
 		try {

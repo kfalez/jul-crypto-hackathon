@@ -10,7 +10,7 @@ public class BtcGui extends JFrame implements ActionListener {
 	private JLabel prompt = new JLabel("Amount of BTC to Mine (press ENTER)");
 	private JTextField inField;
 	private JTextArea display;
-	private JButton reset, displayTime;
+	private JButton reset, displayTime, costAndProfit;
 	private static Btc btc;
 	
 
@@ -29,6 +29,9 @@ public class BtcGui extends JFrame implements ActionListener {
 		displayTime = new JButton("OBTAIN INFO");
 		displayTime.addActionListener(this);
 		
+		costAndProfit = new JButton("COSTS AND PROFITS");
+		costAndProfit.addActionListener(this);
+		
 		JScrollPane scrollPane = new JScrollPane(display);
 
 		JPanel inputPanel = new JPanel();
@@ -38,9 +41,10 @@ public class BtcGui extends JFrame implements ActionListener {
 
 
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(0, 2));
+		buttonPanel.setLayout(new GridLayout(0, 3));
 		buttonPanel.add(displayTime);
 		buttonPanel.add(reset);
+		buttonPanel.add(costAndProfit);
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -58,10 +62,8 @@ public class BtcGui extends JFrame implements ActionListener {
 
 		if (e.getSource() == inField) {
 			double amount= Double.parseDouble(inField.getText());
-			// TODO: ADD THE GRADE TO stats
 			
-			
-			 display.append("\n\nCurrent rate: "+ Btc.sumRates + " BTC/hr, utilizing all available miners.");
+			 display.append("\n\nCurrent rate: "+ Btc.sumRates + " BTC/hr, utilizing all available miners.\n");
 			 Btc.setAmount(amount);
 			 
 		}
@@ -76,11 +78,17 @@ public class BtcGui extends JFrame implements ActionListener {
 			btc = new Btc();
 			
 		}
+		
+		if (e.getSource() == costAndProfit) {
+			Calculations test = new Calculations();
+			Wattage.readWattage("EnergyRates.csv");
+			display.append("\n" + test.calc(Btc.rates, CoindeskConnection.getBitcoinPrice(), Btc.wattage));
+			
+		}
 	}
 
-
 	public static void main(String[] args) {
-		new BtcGui("Mean and median");
+		new BtcGui("Crypto Mining Evaluator");
 		Btc.getRate();		
 	}
 

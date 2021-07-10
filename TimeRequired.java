@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TimeRequired {
-	public ArrayList<String> miners = new ArrayList<String>();
-	public ArrayList<Integer> wattage = new ArrayList<Integer>();
-	public ArrayList<Double> rates = new ArrayList<Double>();
-	public double bitcoins;
-	public double time;
+	public static ArrayList<String> miners = new ArrayList<String>();
+	public static ArrayList<Integer> wattage = new ArrayList<Integer>();
+	public static ArrayList<Double> rates = new ArrayList<Double>();
+
+	public static double time;
 	
-	public TimeRequired(double b) {
-		bitcoins = b;
+	public TimeRequired() {
+
 	}
 	
-	public void getMinerInfo(){
+	public static void getMinerInfo(){
 		try {
 			Scanner s = new Scanner(new File("MiningSetup.csv"), "UTF-8");
 			while (s.hasNextLine()) {
@@ -31,7 +31,7 @@ public class TimeRequired {
 
 	}
 	
-	public void getTime() {
+	public static void getTime(double bitcoins) {
 		double sumRates = 0;
 		for(int i = 0; i < rates.size(); i++)
 		    sumRates += rates.get(i);
