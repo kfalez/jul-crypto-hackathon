@@ -17,7 +17,7 @@ import org.json.*;
  * @version 1.0
  * @since July 10th, 2021
  */
-public class coindeskConnection{
+public class CoindeskConnection{
 
 	private static HttpURLConnection connection;
 	private static BufferedReader reader;
@@ -98,7 +98,7 @@ public class coindeskConnection{
 		
 	
 	public static void main(String[] args) {
-		String result = coindeskConnection.connect("https://api.coindesk.com/v1/bpi/currentprice.json");
+		String result = CoindeskConnection.connect("https://api.coindesk.com/v1/bpi/currentprice.json");
 		result = "[" + result + "]";
 		System.out.print(parseBitcoin(result));
 	}
