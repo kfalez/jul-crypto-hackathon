@@ -11,7 +11,7 @@ public class BtcGui extends JFrame implements ActionListener {
 	private JTextField inField;
 	private JTextArea display;
 	private JButton reset, displayTime;
-	private Btc btc;
+	private static Btc btc;
 	
 
 	public BtcGui(String title) { 
@@ -21,7 +21,7 @@ public class BtcGui extends JFrame implements ActionListener {
 		inField = new JTextField(4);
 		inField.addActionListener(this);
 				
-		display = new JTextArea("*The Current Price of BTC is: $31,000.00 USD*", 5, 20);
+		display = new JTextArea(btc.testToString(), 5, 20);
 		
 		reset = new JButton("RESET");
 		reset.addActionListener(this);
@@ -57,8 +57,9 @@ public class BtcGui extends JFrame implements ActionListener {
 		if (e.getSource() == inField) {
 			double amount= Double.parseDouble(inField.getText());
 			// TODO: ADD THE GRADE TO stats
+			
 			 double addAmount = btc.setAmount(amount);
-			 display.append("\n\nCurrent rate: "+ btc.setRate() + " BTC/hr");
+			 display.append("\n\nCurrent rate: "+ Btc.sumRates + " BTC/hr, utilizing all available miners.");
 			 display.append(addAmount + "\n");
 			 
 		}
@@ -69,7 +70,7 @@ public class BtcGui extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == reset) {
-			display.setText("*The Current Price of BTC is: $31,000.00 USD*");
+			display.setText(btc.testToString());
 			btc = new Btc();
 		}
 	}
@@ -77,6 +78,7 @@ public class BtcGui extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		new BtcGui("Mean and median");
+		Btc.getTime();
 		
 	}
 
