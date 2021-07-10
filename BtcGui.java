@@ -28,6 +28,8 @@ public class BtcGui extends JFrame implements ActionListener {
 		
 		displayTime = new JButton("OBTAIN INFO");
 		displayTime.addActionListener(this);
+		
+		JScrollPane scrollPane = new JScrollPane(display);
 
 		JPanel inputPanel = new JPanel();
 		inputPanel.setLayout(new GridLayout(0, 2));
@@ -43,8 +45,8 @@ public class BtcGui extends JFrame implements ActionListener {
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add("North", inputPanel);
-		contentPane.add("Center", display);
 		contentPane.add("South", buttonPanel);
+		contentPane.add("Center",scrollPane);
 
 
 		setSize(500, 200);
@@ -67,7 +69,6 @@ public class BtcGui extends JFrame implements ActionListener {
 		if (e.getSource() == displayTime) {
 			Btc.getTime();
 			display.append(btc.toString());
-		
 		}
 		
 		if (e.getSource() == reset) {
