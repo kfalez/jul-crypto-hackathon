@@ -6,37 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class BtcGui extends JFrame implements ActionListener {
-	/**
-	 * The prompt for the input text.
-	 */
+
 	private JLabel prompt = new JLabel("Amount of BTC to Mine (press ENTER)");
-	/**
-	 * The output for the calculations and results.
-	 */
 	private JTextField inField;
-	/**
-	 * Obtains the user input grades.
-	 */
 	private JTextArea display;
-	/**
-	 *  One button shows results/stats and the other button clears the GUI.
-	 */
 	private JButton reset, displayTime;
-	// TODO: Add stats instance variable
-	/**
-	 * Keeps track of the grades that are input and performs the
-	 * calculation for the mean and median.
-	 */
 	private Btc btc;
 	
-	/**
-	 * Constructs the user interface design. It JPanel for the component layout.
-	 * Sets the title of the interface and buttons.
-	 * @param title Mean and median
-	 */
+
 	public BtcGui(String title) { 
-		
-		//TODO: Instantiate stats object
+
 		btc = new Btc();
 		
 		inField = new JTextField(4);
@@ -73,10 +52,6 @@ public class BtcGui extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	/**
-	 * Handles three different events when the user presses return/enter,
-	 * when the STATS button is pressed and when RESET button is pressed.
-	 */
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == inField) {
@@ -87,23 +62,19 @@ public class BtcGui extends JFrame implements ActionListener {
 			 display.append(addAmount + "\n");
 			 
 		}
-		//TODO: Add handling of display button -  DISPLAY THE RESULTS
-		//display.append(stats.toString());
+
 		if (e.getSource() == displayTime) {
 			display.append(btc.toString());
 		
 		}
-		// TODO: Add handling of reset button - CREATE A NEW stats
+		
 		if (e.getSource() == reset) {
 			display.setText("*The Current Price of BTC is: $31,000.00 USD*");
 			btc = new Btc();
 		}
 	}
 
-	/**
-	 * Creates an instance of the StatsGUI object.
-	 * @param args is am array of sequence of characters.
-	 */
+
 	public static void main(String[] args) {
 		new BtcGui("Mean and median");
 		
