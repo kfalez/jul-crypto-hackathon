@@ -21,13 +21,12 @@ public class Btc {
 		return currentPrice = CoindeskConnection.parseBitcoin(result);
 	}
 	
-	public double setAmount(double amount) {
+	public static void setAmount(double amount) {
 		bitcoins = amount;
-		return amount;
 	}
 	
 	
-	public final static double getTime() {
+	public final static void getRate() {
 		try {
 			Scanner s = new Scanner(new File("MiningSetup.csv"), "UTF-8");
 			while (s.hasNextLine()) {
@@ -39,18 +38,24 @@ public class Btc {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			
 		}
-		
 		for(int i = 0; i < rates.size(); i++)
 		    sumRates += rates.get(i);
+		
+	}
+	
+	public static double getTime() {
 		return time = (bitcoins/sumRates)/24;
+		
 	}
 	
 
 	
 	public String toString() {
 		
-		 return "\nIt will take: " + getTime() + " days to mine " + bitcoins + " BTC." ;
+		 return "\n\nIt will take: " + time + " days to mine " + bitcoins + " BTC." ;
 }
 	
 	public String testToString() {
